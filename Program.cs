@@ -1,16 +1,17 @@
-﻿int[] indices = new int[] {1, 2, 3, 4, 5, 6, 7};
+int[] indices = new int[] { 1, 2, 3, 4, 5, 6, 7 };
 void GenerateSolution(int[] indeces, int n)
 {
     if (n == 1)
     {
         EvaluateSolution();
-    } else
+    }
+    else
     {
-        for(int i = 0; i < n; i++)
+        for (int i = 0; i < n; i++)
         {
             GenerateSolution(indeces, n - 1);
             int swapIndex = (n % 2 == 0) ? i : 0;
-            (indeces[swapIndex], indeces[n-1]) = (indeces[n-1], indeces[swapIndex]);
+            (indeces[swapIndex], indeces[n - 1]) = (indeces[n - 1], indeces[swapIndex]);
         }
     }
 }
@@ -21,7 +22,7 @@ void EvaluateSolution()
     if (indices[0] < indices[^2])
     {
         float tourDist = 0;
-        for(int i = 0; i < indices.Length; i++)
+        for (int i = 0; i < indices.Length; i++)
         {
             int nextIndex = (i + 1) % indices.Length;
             tourDist += LookUpDistance(indices[i], indices[nextIndex]);
@@ -60,12 +61,25 @@ float LookUpDistance(int i, int b)
             return 9999;
         else
             return distances[(b, i)];
-    } else 
+    }
+    else
         return distances[(i, b)];
 }
 GenerateSolution(indices, indices.Length - 1);
+
+while(bestTourIndices[0] != 1)
+{
+    int first = bestTourIndices[0];
+    for (int i = 1; i < bestTourIndices.Length; i++)
+    {
+        bestTourIndices[i - 1] = bestTourIndices[i];
+    }
+    bestTourIndices[^1] = first;
+}
 
 foreach (int item in bestTourIndices)
 {
     Console.Write(item + " => ");
 }
+
+Console.Write("1");
