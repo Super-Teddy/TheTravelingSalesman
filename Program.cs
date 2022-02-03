@@ -46,6 +46,7 @@ void EvaluateSolution()
 }
 
 //Stores distances between cities
+//This can be changed to fit differnt problems
 Dictionary<(int, int), float> distances = new()
 {
     //For example, the distance between city 1 and 2 is 12
@@ -100,3 +101,6 @@ foreach (int item in bestTourIndices)
 
 //Return to city #1
 Console.Write("1");
+
+//Outputs:
+//1 => 2 => 4 => 6 => 7 => 5 => 3 => 1
